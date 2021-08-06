@@ -31,8 +31,8 @@ long long sum(int node,int left_query,int right_query,int left_bound,int right_b
  
 // updating value at a given position and the segment tree
 void update(int index,int value,int n){
-    tree[n+index-1]=value;
-    for(int i=n+index-1;i>=1;i/=2){
+    tree[n+index]=value;
+    for(int i=n+index;i>=1;i/=2){
         if(i & 1)
             tree[i/2]=tree[i] + tree[i-1];
         else 
@@ -59,6 +59,7 @@ int main(){
         if(type==1){
             int k;int u;
             cin>>k>>u;
+            k--;
             update(k,u,n);
         }
         else{
