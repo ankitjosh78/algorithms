@@ -18,7 +18,7 @@ class linked_list{
             tail=NULL;
         }
 
-        // Function to add new nodes to our list
+        // Function to add a new node to our list
         void add_node(int value){
             node *temp=new node;
             temp->data=value;
@@ -33,6 +33,32 @@ class linked_list{
             else{
                 tail->next=temp;
                 tail=tail->next;
+            }
+        }
+
+        // Function to delete a node from our list
+        void delete_node(int value){
+            node *temp=new node;
+            temp=head;
+
+            // When our value is the head node itself
+            if(value == head->data){
+                head=head->next;
+            }
+            // Other times when the value is something else
+            else{
+                while(temp->next!=NULL){
+                    if(temp->next->data == value){
+                        
+                        // If the value is the tail node, then we reassign tail to the previous node.
+                        if(temp->next->data==tail->data){
+                            tail=temp;
+                        }
+                        temp->next=temp->next->next;
+                        return;
+                    }
+                    temp=temp->next;
+                }
             }
         }
         // Function to get the head
@@ -54,6 +80,14 @@ int main(){
     L.add_node(3);
     // the head is node 1, while tail is node 3
 
+    cout<<"Initially...."<<endl;
     cout<<"Head is:"<<L.get_head().data<<" Tail is:"<<L.get_tail().data<<endl;     // Head is:1 Tail is:3
+
+    L.delete_node(1);
+    cout<<"After deleting node 1, current Head is:"<<L.get_head().data<<endl;      // After deleting node 1, current Head is:2
+    
+    L.delete_node(3);
+    cout<<"After deleting node 2, current Tail is:"<<L.get_tail().data<<endl;      // After deleting node 3, current Tail is:2
+
     return 0;
 }
