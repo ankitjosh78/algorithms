@@ -61,6 +61,27 @@ class linked_list{
                 }
             }
         }
+
+        // Function to search a node from our list
+        int search_node(int value){
+            node *temp=new node;
+            temp=head;
+
+            int position=1;
+            if(value == head->data){
+                return position;
+            }
+            else{
+                while(temp->next!=NULL){
+                    position++;
+                    if(temp->next->data==value){
+                        return position;
+                    }
+                    temp=temp->next;
+                }
+            }
+            return -1;
+        }
         // Function to get the head
         node get_head(){
             return *head;
@@ -88,6 +109,7 @@ int main(){
     
     L.delete_node(3);
     cout<<"After deleting node 2, current Tail is:"<<L.get_tail().data<<endl;      // After deleting node 3, current Tail is:2
-
+    
+    cout<<"Node 2 is at position:"<<L.search_node(2)<<" and Node 1 is at position:"<<L.search_node(1);      // Node 2 is at position:1 and Node 1 is at position:-1
     return 0;
 }
