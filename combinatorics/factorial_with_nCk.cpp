@@ -17,6 +17,7 @@ void calculateFact() {
   }
 }
 
+// fernet's little theorem using binary exponentiation
 long long powmod(long long a, long long b, long long p) {
   a %= p;
   if (a == 0)
@@ -35,6 +36,7 @@ long long powmod(long long a, long long b, long long p) {
   return product;
 }
 
+// modular inverse
 long long inv(long long a, long long p) { return powmod(a, p - 2, p); }
 
 // returns nCk modulo p
