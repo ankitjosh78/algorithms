@@ -1,0 +1,33 @@
+Inorder -> Left, Node, Right
+Preorder -> Node, Left, Right
+Postorder -> Left, Right, Node
+
+Tree:
+     1
+    / \
+   2   3
+  / \ / \
+ 4  5 6  7
+
+Tree Input:
+1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1
+
+Preorder -> 1,2,4,5,3,6,7
+Inorder -> 4,2,5,1,6,3,7
+Postorder -> 4,5,2,6,7,3,1
+
+
+So, at each position
+
+If I don't start my sequence from here
+
+ans1=f(i+1,len)
+
+If I start my sequence from here
+  
+  ans2=cost[i]
+  for x in range(i,n):
+    if font[x] > font[i]:
+      ans2+=f(x,len+1)
+
+Final ans: min(ans1,ans2)
