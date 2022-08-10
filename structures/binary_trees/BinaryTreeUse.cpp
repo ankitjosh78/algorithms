@@ -1,7 +1,10 @@
 #include "BinaryTreeNode.h"
 #include <iostream>
 #include <queue>
+<<<<<<< HEAD
 #include <vector>
+=======
+>>>>>>> 07943596e532ee836d6b888b5f9b8717c80c3d57
 
 using namespace std;
 
@@ -59,7 +62,20 @@ BinaryTreeNode<int> *takeInputLevelWise() {
   return root;
 }
 
+<<<<<<< HEAD
 int main() {
   BinaryTreeNode<int> *root = takeInputLevelWise();
   printBinaryTreeLevelWise(root);
+=======
+int numNodes(BinaryTreeNode<int> *root) {
+  if (root == NULL)
+    return 0;
+  return 1 + numNodes(root->left) + numNodes(root->right);
+}
+
+int main() {
+  BinaryTreeNode<int> *root = takeInputLevelWise();
+  printBinaryTreeLevelWise(root);
+  cout << "Number of nodes is:" << numNodes(root) << endl;
+>>>>>>> 07943596e532ee836d6b888b5f9b8717c80c3d57
 }
