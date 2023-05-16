@@ -1,7 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<vector<int>> identity = {{1, 0}, {0, 1}};
+vector<vector<int>> identity;
 
+void make_identity(int n) {
+  identity.resize(n, vector<int>(n, 0));
+  for (int i = 0; i < n; i++) {
+    identity[i][i] = 1;
+  }
+}
 vector<vector<int>> multiply(vector<vector<int>> mat1,
                              vector<vector<int>> mat2) {
   vector<vector<int>> ans(mat1.size(), vector<int>(mat2[0].size(), 0));
@@ -19,15 +25,16 @@ vector<vector<int>> power(vector<vector<int>> mat, int k) {
     return identity;
   }
   vector<vector<int>> res = power(mat, k / 2);
-  if (k & 1) {
-    return multiply(multiply(res, res), mat);
-  } else
+  if (k % 2 == 0)
     return multiply(res, res);
+  else
+    return multiply(multiply(res, res), mat);
 }
 
 signed main() {
   int n, k;
   cin >> n >> k;
+  make_identity(n);
   vector<vector<int>> mat(n, vector<int>(n));
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {

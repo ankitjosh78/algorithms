@@ -19,3 +19,10 @@ void calculate_till_n(int n) {
     }
   }
 }
+
+int main() {
+  int n;
+  cin >> n;
+  calculate_till_n(n);
+  cout << catalan[n] << endl;
+}

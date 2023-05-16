@@ -5,8 +5,8 @@ using namespace std;
 const int mod = 1e9 + 7;
 vector<vector<int>> identity = {{1, 0}, {0, 1}};
 
-vector<vector<int>> multiply(vector<vector<int>> mat1,
-                             vector<vector<int>> mat2) {
+vector<vector<int>> multiply(vector<vector<int>> &mat1,
+                             vector<vector<int>> &mat2) {
   vector<vector<int>> ans(mat1.size(), vector<int>(mat2[0].size(), 0));
   for (int i = 0; i < (int)mat1.size(); i++) {
     for (int j = 0; j < (int)mat2[0].size(); j++) {
@@ -17,7 +17,7 @@ vector<vector<int>> multiply(vector<vector<int>> mat1,
   }
   return ans;
 }
-vector<vector<int>> power(vector<vector<int>> mat, int k) {
+vector<vector<int>> power(vector<vector<int>> &mat, int k) {
   if (k == 0) {
     return identity;
   }

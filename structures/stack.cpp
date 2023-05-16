@@ -1,59 +1,68 @@
 #include <climits>
 #include <iostream>
+#include <iterator>
 using namespace std;
 
-<<<<<<< HEAD
 template <typename T> class Stack {
-  T *data;
-=======
-class Stack {
-  int *data;
->>>>>>> 07943596e532ee836d6b888b5f9b8717c80c3d57
   int nextIndex;
   int capacity;
+  T *elements;
 
 public:
-<<<<<<< HEAD
-  Stack(){this->data} T top() {}
-
-  void pop() {}
-
-  void push(T element) {}
-=======
-  Stack(int totalSize) {
-    data = new int[totalSize];
+  Stack(int size) {
+    capacity = size;
     nextIndex = 0;
-    capacity = totalSize;
+    elements = new T[size];
   }
-
-  bool isEmpty() { return nextIndex == 0; }
-
-  int size() { return nextIndex; }
-
-  void push(int element) {
-    if (nextIndex >= capacity) {
+  void push(T data) {
+    if (nextIndex == capacity) {
       cout << "Stack is full." << endl;
+    } else {
+      elements[nextIndex] = data;
+      nextIndex++;
+    }
+  }
+  void pop() {
+    if (nextIndex == 0) {
+      cout << "Stack is empty." << endl;
+    } else {
+      nextIndex--;
+      cout << "Element:" << elements[nextIndex] << " popped out." << endl;
+    }
+  }
+  void top() {
+    if (nextIndex == 0) {
+      cout << "Stack is empty." << endl;
       return;
     }
-    data[nextIndex] = element;
-    nextIndex++;
+    cout << "Top element is:" << elements[nextIndex - 1] << endl;
   }
-
-  int pop() {
-    if (isEmpty()) {
-      cout << "Stack is empty." << endl;
-      return INT_MIN;
-    }
-    nextIndex--;
-    return data[nextIndex];
-  }
-
-  int top() {
-    if (isEmpty()) {
-      cout << "Stack is empty." << endl;
-      return INT_MIN;
-    }
-    return data[nextIndex - 1];
-  }
->>>>>>> 07943596e532ee836d6b888b5f9b8717c80c3d57
+  int size() { return nextIndex; }
 };
+
+int main() {
+  Stack<int> s(3);
+  while (1) {
+    cout << "Enter 1 for push:" << endl;
+    cout << "Enter 2 for pop:" << endl;
+    cout << "Enter 3 for top:" << endl;
+    cout << "Enter 4 for exit:" << endl;
+    int choice;
+    cin >> choice;
+    if (choice == 4) {
+      break;
+    }
+    if (choice == 1) {
+      cout << "Enter data:" << endl;
+      int data;
+      cin >> data;
+      s.push(data);
+    }
+    if (choice == 2) {
+      s.pop();
+    }
+    if (choice == 3) {
+      s.top();
+    }
+  }
+}
