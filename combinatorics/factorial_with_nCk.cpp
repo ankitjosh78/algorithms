@@ -8,14 +8,7 @@ const long long p = 1e9 + 7;
 const int MAXN = 1e5;
 
 vector<long long> fact(MAXN + 1);
-
-// precomputing factorial from 1 to n
-void calculateFact() {
-  fact[0] = fact[1] = 1;
-  for (long long i = 2; i <= (long long)MAXN; i++) {
-    fact[i] = (fact[i - 1] * i) % p;
-  }
-}
+vector<long long> invfact(MAXN + 1);
 
 // fernet's little theorem using binary exponentiation
 long long powmod(long long a, long long b, long long p) {
@@ -36,10 +29,22 @@ long long powmod(long long a, long long b, long long p) {
   return product;
 }
 
+// precomputing factorial from 1 to n
+void calculateFact() {
+  fact[0] = fact[1] = 1;
+  for (long long i = 2; i <= (long long)MAXN; i++) {
+    fact[i] = (fact[i - 1] * i) % p;
+  }
+  invfact[MAXN] = powmod(MAXN, p - 2, p);
+  for (int i = MAXN; i >= 1; i--) {
+    invfact[i - 1] = (invfact[i] * i) % p;
+  }
+}
+
 // modular inverse
 long long inv(long long a, long long p) { return powmod(a, p - 2, p); }
 
 // returns nCk modulo p
 long long nCk(long long n, long long k, long long p) {
-  return ((fact[n] * inv(fact[k], p) % p) * inv(fact[n - k], p)) % p;
+  return ((fact[n] * invfact[k] % p) * invfact[n - k]) % p;
 }
