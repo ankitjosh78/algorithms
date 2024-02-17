@@ -12,12 +12,12 @@ const ll INF = 1e9;
 int n, m, vis[MAX_N];
 vector<int> adj[MAX_N];
 
-void dfs(int u) {
-  vis[u] = 1;
+void dfs(int u, int comp) {
+  vis[u] = comp;
   for (int v : adj[u]) {
     if (vis[v])
       continue;
-    dfs(v);
+    dfs(v, comp);
   }
 }
 
@@ -29,10 +29,12 @@ void solve() {
     adj[u].push_back(v);
     adj[v].push_back(u);
   }
+  int cur_comp = 0;
   for (int i = 1; i <= n; i++) {
     if (vis[i])
       continue;
-    dfs(i);
+    cur_comp++;
+    dfs(i, cur_comp);
   }
 }
 
