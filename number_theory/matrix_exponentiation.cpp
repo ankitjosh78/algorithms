@@ -1,5 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long int
+
+int mod = 1e9 + 7;
 vector<vector<int>> identity;
 
 void make_identity(int n) {
@@ -14,7 +17,8 @@ vector<vector<int>> multiply(vector<vector<int>> mat1,
   for (int i = 0; i < (int)mat1.size(); i++) {
     for (int j = 0; j < (int)mat2[0].size(); j++) {
       for (int k = 0; k < (int)mat2.size(); k++) {
-        ans[i][j] += mat1[i][k] * mat2[k][j];
+        ans[i][j] += (mat1[i][k] * 1LL * mat2[k][j]) % mod;
+        ans[i][j] %= mod;
       }
     }
   }

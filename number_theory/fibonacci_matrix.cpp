@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <vector>
 #define int long long int
 using namespace std;
 
@@ -22,16 +23,18 @@ vector<vector<int>> power(vector<vector<int>> &mat, int k) {
     return identity;
   }
   vector<vector<int>> res = power(mat, k / 2);
+  res = multiply(res, res);
   if (k & 1) {
-    return multiply(multiply(res, res), mat);
+    return multiply(res, mat);
   } else
-    return multiply(res, res);
+    return res;
 }
 
 signed main() {
   int n;
   cin >> n;
   vector<vector<int>> fib = {{1, 1}, {1, 0}};
-  vector<vector<int>> res = multiply(power(fib, n - 1), {{1}, {0}});
+  vector<vector<int>> temp = power(fib, n - 1);
+  vector<vector<int>> res = multiply(temp, {{1}, {0}});
   cout << res[0][0] << endl;
 }
